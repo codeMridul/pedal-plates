@@ -23,6 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20sp"
+        android:textColor="#fafafa"
         android:text="@string/developer_message"
         android:fontFamily="@font/cooljazz"/>
 
