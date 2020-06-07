@@ -7,8 +7,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="app_name_bold">PEDAL\nPLATES</string>
     <string name="developer_message">Developed with ❤️ by code.Moriarity</string>
     <string name="title_activity_login">Sign in</string>
@@ -25,5 +23,15 @@
     <string name="password">Password</string>
     <string name="don_t_have_an_account_register">Don\'t have an Account? Register</string>
     <string name="login_to_your_account">Login to Your Account</string>
-    <string name="forgot_password">Forgot password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_your_registered_mobile_number_and_email_address">Enter your registered mobile number and email address</string>
+    <string name="enter_the_otp_received_on_your_email_id_and_reset_password">Enter the OTP received on your email id and reset password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="otp">OTP</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="profile">Profile</string>
+    <string name="deliver_address">Deliver Address</string>
+    <string name="submit">Submit</string>
 </resources>

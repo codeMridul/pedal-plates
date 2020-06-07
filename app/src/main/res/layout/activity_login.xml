@@ -22,7 +22,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cvMobileNumber"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_below="@+id/txtLogin"
         android:layout_margin="10dp"
         app:cardCornerRadius="50dp">
@@ -31,17 +31,23 @@
             android:id="@+id/etMobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
+            android:background="@android:color/transparent"
             android:hint="@string/mobile_number"
             android:inputType="phone"
             android:maxLength="10"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/cooljazz"
+            android:importantForAutofill="no"
             android:maxLines="1" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_below="@+id/cvMobileNumber"
         android:layout_margin="10dp"
         app:cardCornerRadius="50dp">
@@ -50,9 +56,15 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
+            android:background="@android:color/transparent"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/cooljazz"
+            android:importantForAutofill="no"
             android:maxLines="1" />
     </androidx.cardview.widget.CardView>
 
@@ -86,9 +98,9 @@
         android:layout_margin="10dp"
         android:fontFamily="@font/rosemary"
         android:text="@string/forgot_password"
-        android:textSize="15sp"
+        android:textColor="#d81b60"
         android:textStyle="bold"
-        />
+        android:textSize="17sp" />
 
 
     <TextView
@@ -100,7 +112,8 @@
         android:layout_margin="20dp"
         android:fontFamily="@font/rosemary"
         android:text="@string/don_t_have_an_account_register"
-        android:textSize="15sp"
+        android:textColor="#d81b60"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
 

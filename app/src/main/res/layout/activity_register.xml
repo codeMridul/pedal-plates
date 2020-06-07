@@ -1,8 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_scrollFlags="scroll|enterAlways" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/rlContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/profile"
+                android:src="@drawable/ic_lprofile_foreground" />
+
+            <TextView
+                android:id="@+id/txtAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgProfile"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/rosemary"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvName"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/txtAppName"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/name"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvName"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etEmailId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/email_address"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvEmailId"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etMobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_phone_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/mobile_number"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDeliveryAddress"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvMobileNumber"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etDeliveryAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_edit_location_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/deliver_address"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPassword"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvDeliveryAddress"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvConPassword"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvPassword"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="50dp">
+
+                <EditText
+                    android:id="@+id/etConPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cooljazz"
+                    android:hint="@string/confirm_password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRegister"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/cvConPassword"
+                android:layout_margin="10dp"
+                android:background="@color/primaryDarkColor"
+                app:cardCornerRadius="50dp">
+
+                <TextView
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primaryDarkColor"
+                    android:fontFamily="@font/rosemary"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textColor="#fafafa"
+                    android:textSize="20sp" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

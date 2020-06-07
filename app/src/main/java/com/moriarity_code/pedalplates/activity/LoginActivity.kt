@@ -1,12 +1,11 @@
 package com.moriarity_code.pedalplates.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.moriarity_code.pedalplates.R
 
 class LoginActivity : AppCompatActivity() {
@@ -27,18 +26,13 @@ class LoginActivity : AppCompatActivity() {
         txtForgotPassword = findViewById(R.id.txtForgotPassword)
         txtRegister = findViewById(R.id.txtRegister)
 
+
         btnLogin.setOnClickListener {
             Toast.makeText(
                 this@LoginActivity,
                 "Login Button Clicked",
                 Toast.LENGTH_SHORT).show()
         }
-
-
-
-
-
-
 
         txtForgotPassword.setOnClickListener{
             val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
@@ -52,4 +46,12 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        finish()
+    }
+
+    override fun onBackPressed() {
+        finish()
+    }
 }
