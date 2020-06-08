@@ -6,7 +6,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="app_name_bold">PEDAL\nPLATES</string>
     <string name="developer_message">Developed with ❤️ by code.Moriarity</string>
     <string name="title_activity_login">Sign in</string>
@@ -34,4 +33,5 @@
     <string name="profile">Profile</string>
     <string name="deliver_address">Deliver Address</string>
     <string name="submit">Submit</string>
+    <string name="preference_file_name">Profile Preference</string>
 </resources>
