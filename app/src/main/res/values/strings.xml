@@ -34,4 +34,12 @@
     <string name="deliver_address">Deliver Address</string>
     <string name="submit">Submit</string>
     <string name="preference_file_name">Profile Preference</string>
+    <string name="home">Home</string>
+    <string name="favourite_restaurants">Favourite Restaurants</string>
+    <string name="order_history">Order History</string>
+    <string name="faqs">FAQs</string>
+    <string name="logout">Logout</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 </resources>

@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.moriarity_code.pedalplates.R
 import kotlinx.android.synthetic.main.activity_register.*
+import org.json.JSONException
 import org.json.JSONObject
 
 class RegisterActivity : AppCompatActivity() {
@@ -64,34 +65,51 @@ class RegisterActivity : AppCompatActivity() {
                         url,
                         jsonParams,
                         Response.Listener
-                        {
-                            val success = it.getBoolean("success")
-                            if (success) {
-                                val profileObject = it.getJSONObject("data")
-                                sharedPreferences = getSharedPreferences(
-                                    getString(R.string.preference_file_name),
-                                    Context.MODE_PRIVATE
-                                )
-                                with(sharedPreferences.edit())  //We are saving all the data that we receive in response in shared Preferences
-                                {
-                                    putBoolean("isLoggedIn", true).apply()
-                                    putString("user_id", profileObject.getString("user_id")).apply()
-                                    putString("name", profileObject.getString("name")).apply()
-                                    putString("email", profileObject.getString("email")).apply()
-                                    putString(
-                                        "mobile_number",
-                                        profileObject.getString("mobile_number")
-                                    ).apply()
-                                    putString("address", profileObject.getString("address")).apply()
+                        { response ->
+                            try {
+                                val it = response.getJSONObject("data")
+                                val success = it.getBoolean("success")
+                                if (success) {
+                                    val profileObject = it.getJSONObject("data")
+                                    sharedPreferences = getSharedPreferences(
+                                        getString(R.string.preference_file_name),
+                                        Context.MODE_PRIVATE
+                                    )
+                                    with(sharedPreferences.edit())  //We are saving all the data that we receive in response in shared Preferences
+                                    {
+                                        putBoolean("isLoggedIn", true).apply()
+                                        putString(
+                                            "user_id",
+                                            profileObject.getString("user_id")
+                                        ).apply()
+                                        putString("name", profileObject.getString("name")).apply()
+                                        putString("email", profileObject.getString("email")).apply()
+                                        putString(
+                                            "mobile_number",
+                                            profileObject.getString("mobile_number")
+                                        ).apply()
+                                        putString(
+                                            "address",
+                                            profileObject.getString("address")
+                                        ).apply()
+                                    }
+                                    val intent =
+                                        Intent(this@RegisterActivity, HomeActivity::class.java)
+                                    startActivity(intent)
+                                } else {
+                                    Toast.makeText(
+                                        this@RegisterActivity,
+                                        it.getString("errorMessage"),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                                val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
-                                startActivity(intent)
-                            } else {
+                            } catch (e: JSONException) {
                                 Toast.makeText(
                                     this@RegisterActivity,
-                                    it.getString("errorMessage"),
+                                    e.message,
                                     Toast.LENGTH_SHORT
                                 ).show()
+
                             }
                         },
                         Response.ErrorListener

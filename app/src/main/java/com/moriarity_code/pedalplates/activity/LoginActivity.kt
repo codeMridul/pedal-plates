@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.moriarity_code.pedalplates.R
 import com.moriarity_code.pedalplates.util.ConnectionManager
+import org.json.JSONException
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
@@ -63,32 +64,42 @@ class LoginActivity : AppCompatActivity() {
                 url,
                 jsonParams,
                 Response.Listener
-                {
-                    val success = it.getBoolean("success")
-                    if (success) {
-                        val profileObject = it.getJSONObject("data")
-                        with(sharedPreferences.edit())  //We are saving all the data that we receive in response in shared Preferences
-                        {
-                            putBoolean("isLoggedIn", true).apply()
-                            putString("user_id", profileObject.getString("user_id")).apply()
-                            putString("name", profileObject.getString("name")).apply()
-                            putString("email", profileObject.getString("email")).apply()
-                            putString(
-                                "mobile_number",
-                                profileObject.getString("mobile_number")
-                            ).apply()
-                            putString("address", profileObject.getString("address")).apply()
+                { response ->
+                    try {
+                        val it = response.getJSONObject("data")
+                        val success = it.getBoolean("success")
+                        if (success) {
+                            val profileObject = it.getJSONObject("data")
+                            with(sharedPreferences.edit())  //We are saving all the data that we receive in response in shared Preferences
+                            {
+                                putBoolean("isLoggedIn", true).apply()
+                                putString("user_id", profileObject.getString("user_id")).apply()
+                                putString("name", profileObject.getString("name")).apply()
+                                putString("email", profileObject.getString("email")).apply()
+                                putString(
+                                    "mobile_number",
+                                    profileObject.getString("mobile_number")
+                                ).apply()
+                                putString("address", profileObject.getString("address")).apply()
+                            }
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                            sharedPreferences.edit().putBoolean("isLoggedIn", true)
+                            this@LoginActivity.finish()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Wrong Credentials",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                        startActivity(intent)
-                        sharedPreferences.edit().putBoolean("isLoggedIn", true)
-                        this@LoginActivity.finish()
-                    } else {
+                    } catch (e: JSONException) {
                         Toast.makeText(
                             this@LoginActivity,
-                            "Wrong Credentials",
+                            e.message,
                             Toast.LENGTH_SHORT
                         ).show()
+
                     }
                 },
                 Response.ErrorListener {

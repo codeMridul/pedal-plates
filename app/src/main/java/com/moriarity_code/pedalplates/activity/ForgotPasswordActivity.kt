@@ -13,6 +13,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.moriarity_code.pedalplates.R
+import org.json.JSONException
 import org.json.JSONObject
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -43,34 +44,45 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 url,
                 jsonParams,
                 Response.Listener
-                {
-                    val success = it.getBoolean("success")
-                    if (success) {
-                        if (it.getBoolean("first_try")) {
-                            Toast.makeText(
-                                this@ForgotPasswordActivity,
-                                "OTP has been send to your registered email address",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                { response ->
+                    try {
+                        val it = response.getJSONObject("data")
+                        val success = it.getBoolean("success")
+                        if (success) {
+                            if (it.getBoolean("first_try")) {
+                                Toast.makeText(
+                                    this@ForgotPasswordActivity,
+                                    "OTP has been send to your registered email address",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this@ForgotPasswordActivity,
+                                    "OTP has been send to your registered email address once\nUse the same OTP",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            }
+                            val intent =
+                                Intent(
+                                    this@ForgotPasswordActivity,
+                                    ResetPasswordActivity::class.java
+                                )
+                            intent.putExtra("mobile_number", mobile)
+                            startActivity(intent)
                         } else {
                             Toast.makeText(
                                 this@ForgotPasswordActivity,
-                                "OTP has been send to your registered email address once\nUse the same OTP",
+                                "User not found",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                         }
-                        val intent =
-                            Intent(this@ForgotPasswordActivity, ResetPasswordActivity::class.java)
-                        intent.putExtra("mobile_number", mobile)
-                        startActivity(intent)
-                    } else {
+                    } catch (e: JSONException) {
                         Toast.makeText(
                             this@ForgotPasswordActivity,
-                            "User not found",
+                            e.message,
                             Toast.LENGTH_SHORT
                         ).show()
-
                     }
                 },
                 Response.ErrorListener {

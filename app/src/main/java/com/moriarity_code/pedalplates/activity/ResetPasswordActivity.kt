@@ -54,20 +54,29 @@ class ResetPasswordActivity : AppCompatActivity() {
                     url,
                     jsonParams,
                     Response.Listener
-                    {
-                        val success = it.getBoolean("success")
-                        val message = it.getString("successMessage")
-                        Toast.makeText(
-                            this@ResetPasswordActivity,
-                            message,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        if (success) {
-                            val intent =
-                                Intent(this@ResetPasswordActivity, LoginActivity::class.java)
-                            startActivity(intent)
-                            sharedPreferences.edit().clear().apply()
-                            this@ResetPasswordActivity.finish()
+                    { response ->
+                        try {
+                            val it = response.getJSONObject("data")
+                            val success = it.getBoolean("success")
+                            val message = it.getString("successMessage")
+                            Toast.makeText(
+                                this@ResetPasswordActivity,
+                                message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            if (success) {
+                                val intent =
+                                    Intent(this@ResetPasswordActivity, LoginActivity::class.java)
+                                startActivity(intent)
+                                sharedPreferences.edit().clear().apply()
+                                this@ResetPasswordActivity.finish()
+                            }
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                this@ResetPasswordActivity,
+                                e.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     },
                     Response.ErrorListener {
