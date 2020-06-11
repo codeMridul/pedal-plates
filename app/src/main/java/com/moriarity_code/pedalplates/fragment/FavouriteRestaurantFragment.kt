@@ -13,7 +13,7 @@ class FavouriteRestaurantFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.home_fragment, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         return view
     }
