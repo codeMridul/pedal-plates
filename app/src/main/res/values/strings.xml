@@ -42,4 +42,8 @@
     <string name="profile_name">Profile Name</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="product_name">product_name</string>
+    <string name="product_cost">product_cost</string>
+    <string name="restaurant_name">restaurant_name</string>
+    <string name="sort_action">Sort Action</string>
 </resources>

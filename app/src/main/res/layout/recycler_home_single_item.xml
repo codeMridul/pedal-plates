@@ -7,7 +7,6 @@
     app:cardBackgroundColor="#fafafa"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -40,6 +39,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/rosemary"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="restaurant_name"
             android:textSize="15sp" />
 
@@ -50,6 +50,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/rosemary"
             android:gravity="center"
+            android:textColor="#084D00"
             android:text="cost_per_person"
             android:textSize="15sp" />
 

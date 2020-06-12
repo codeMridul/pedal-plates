@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -25,6 +23,8 @@ import com.moriarity_code.pedalplates.adapter.HomeAdapter
 import com.moriarity_code.pedalplates.model.Restaurants
 import com.moriarity_code.pedalplates.util.ConnectionManager
 import org.json.JSONException
+import java.util.*
+import kotlin.collections.HashMap
 
 class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -34,14 +34,26 @@ class HomeFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
 
     val restaurantList = arrayListOf<Restaurants>()
+    private var ratingComparator1 = Comparator<Restaurants> { res1, res2 ->
+
+        if (res1.rating.compareTo(res2.rating, true) == 0) {
+            // sort according to name if rating is same
+            res1.name.compareTo(res2.name, true)
+        } else {
+            res1.rating.compareTo(res2.rating, true)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = view.findViewById(R.id.recyclerHome)
         layoutManager = GridLayoutManager(activity as Context, 2)
+        setHasOptionsMenu(true)
 
         val queue = Volley.newRequestQueue(activity as Context)
         val url = "http://13.235.250.119/v2/restaurants/fetch_result/"
@@ -121,12 +133,26 @@ class HomeFragment : Fragment() {
                 activity?.finish()
             }
 
-            dialog.setNegativeButton("Exit") { text, listener ->
+            dialog.setNegativeButton("Exit") { _, _ ->
                 ActivityCompat.finishAffinity(activity as Activity)
             }
             dialog.create()
             dialog.show()
         }
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.sort_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.action_sort) {
+            Collections.sort(restaurantList, ratingComparator1)
+            restaurantList.reverse()
+        }
+        recyclerAdapter.notifyDataSetChanged()
+        return super.onOptionsItemSelected(item)
     }
 }

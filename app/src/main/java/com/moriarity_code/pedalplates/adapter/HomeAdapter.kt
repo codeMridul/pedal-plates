@@ -38,7 +38,7 @@ class HomeAdapter(val context: Context, private val itemList: ArrayList<Restaura
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val res = itemList[position]
         holder.txtResName.text = res.name
-        holder.txtCostPerPerson.text = res.cost_for_one
+        holder.txtCostPerPerson.text = "Rs. ${res.cost_for_one}/person"
         holder.txtRate.text = res.rating
         Picasso.get().load(res.img_url).error(R.drawable.ic_food).into(holder.imgRes)
         holder.imgFavourite.setOnClickListener {
@@ -47,6 +47,7 @@ class HomeAdapter(val context: Context, private val itemList: ArrayList<Restaura
         holder.llContent.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("res_id", res.userId)
+            intent.putExtra("name", res.name)
             context.startActivity(intent)
         }
 
