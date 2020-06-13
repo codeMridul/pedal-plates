@@ -27,10 +27,30 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/txtEnterMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtResName"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/rosemary"
+        android:gravity="center"
+        android:text="Click on the dishes to add to the cart"
+        android:textSize="18sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtResName"
+        android:layout_below="@+id/txtEnterMenu"
         android:layout_margin="5dp" />
+
+    <include
+        android:id="@+id/cartLayout"
+        layout="@layout/cart_layout"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp" />
 </RelativeLayout>

@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
+        <activity android:name=".activity.CartActivity"></activity>
         <activity android:name=".activity.DetailActivity" />
         <activity
             android:name=".activity.SplashActivity"

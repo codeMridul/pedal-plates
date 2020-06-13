@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,13 +28,20 @@ class DetailActivity : AppCompatActivity() {
     lateinit var recyclerAdapter: DetailAdapter
     lateinit var layoutManager: GridLayoutManager
     private lateinit var resName: TextView
+    private lateinit var cartLayout: RelativeLayout
+    private lateinit var txtCartItemNumber: TextView
 
     val menuList = arrayListOf<RestaurantMenu>()
+    val cartItem = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         resName = findViewById(R.id.txtResName)
         setToolbar()
+
+        txtCartItemNumber = findViewById(R.id.txtCartItemNumber)
+        cartLayout = findViewById(R.id.cartLayout)
+        cartLayout.visibility = View.GONE
         resName.text = intent.getStringExtra("name")
         val id = intent.getStringExtra("res_id")
 
@@ -62,7 +71,16 @@ class DetailActivity : AppCompatActivity() {
                                 resMenuObject.getString("restaurant_id")
                             )
                             menuList.add(menuObject)
-                            recyclerAdapter = DetailAdapter(this@DetailActivity, menuList)
+                            recyclerAdapter =
+                                DetailAdapter(this@DetailActivity, menuList, cartItem) {
+                                    if (cartItem.isEmpty())
+                                        cartLayout.visibility = View.GONE
+                                    else
+                                        cartLayout.visibility = View.VISIBLE
+                                    if (it) {
+                                        txtCartItemNumber.text = cartItem.size.toString()
+                                    }
+                                }
                             recyclerView.adapter = recyclerAdapter
                             recyclerView.layoutManager = layoutManager
                         }
@@ -106,12 +124,25 @@ class DetailActivity : AppCompatActivity() {
             dialog.create()
             dialog.show()
         }
+
+        cartLayout.setOnClickListener {
+            val intent = Intent(this@DetailActivity, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {//this add functionality to the back arrow in the Action Bar
-        val intent = Intent(this@DetailActivity, HomeActivity::class.java)
-        startActivity(intent)
-        finish()
+        if (cartItem.isNotEmpty()) {
+            Toast.makeText(
+                this@DetailActivity,
+                "You can order from one Restaurant only at a time",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            val intent = Intent(this@DetailActivity, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         return true
     }
 
@@ -120,5 +151,18 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.title = "Menu"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onBackPressed() {
+        if (cartItem.isNotEmpty()) {
+            Toast.makeText(
+                this@DetailActivity,
+                "You can order from one Restaurant only at a time",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            super.onBackPressed()
+            finish()
+        }
     }
 }
