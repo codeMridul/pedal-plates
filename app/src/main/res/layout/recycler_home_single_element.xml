@@ -40,7 +40,7 @@
             android:fontFamily="@font/rosemary"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="restaurant_name"
+            android:text="@string/restaurant_name"
             android:textSize="15sp" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:fontFamily="@font/rosemary"
             android:gravity="center"
             android:textColor="#084D00"
-            android:text="cost_per_person"
+            android:text="@string/cost_per_person"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/rosemary"
                 android:gravity="center"
-                android:text="0.0"
+                android:text="@string/_0_0"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
