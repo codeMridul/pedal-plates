@@ -40,7 +40,6 @@ class DetailAdapter(
         holder.txtProductCost.text = "Rs. ${product.cost_for_one}"
 
 
-
         holder.txtAddToCart.setOnClickListener {
             if (cartItem.contains(product.id)) {
                 cartItem.remove(product.id)
@@ -60,5 +59,4 @@ class DetailAdapter(
             itemClick(true)
         }
     }
-
 }

@@ -44,8 +44,10 @@
     <string name="close_drawer">Close Drawer</string>
     <string name="product_name">product_name</string>
     <string name="product_cost">product_cost</string>
-    <string name="restaurant_name">restaurant_name</string>
     <string name="sort_action">Sort Action</string>
     <string name="remove">Remove</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="restaurant_name">restaurant_name</string>
+    <string name="cost_per_person">cost_per_person</string>
+    <string name="_0_0">0.0</string>
 </resources>
