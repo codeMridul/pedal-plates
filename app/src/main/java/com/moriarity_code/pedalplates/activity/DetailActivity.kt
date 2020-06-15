@@ -22,8 +22,9 @@ import com.moriarity_code.pedalplates.model.RestaurantMenu
 import com.moriarity_code.pedalplates.util.ConnectionManager
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONException
+import java.io.Serializable
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), Serializable {
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerAdapter: DetailAdapter
     lateinit var layoutManager: GridLayoutManager
@@ -32,7 +33,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var txtCartItemNumber: TextView
 
     val menuList = arrayListOf<RestaurantMenu>()
-    val cartItem = mutableListOf<String>()
+    val cartItem = arrayListOf<RestaurantMenu>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -42,7 +43,8 @@ class DetailActivity : AppCompatActivity() {
         txtCartItemNumber = findViewById(R.id.txtCartItemNumber)
         cartLayout = findViewById(R.id.cartLayout)
         cartLayout.visibility = View.GONE
-        resName.text = intent.getStringExtra("name")
+        val name = intent.getStringExtra("name")
+        resName.text = name
         val id = intent.getStringExtra("res_id")
 
         recyclerView = findViewById(R.id.recyclerDetail)
@@ -61,28 +63,36 @@ class DetailActivity : AppCompatActivity() {
                     try {
                         val it = response.getJSONObject("data")
                         val success = it.getBoolean("success")
-                        val data = it.getJSONArray("data")
-                        for (i in 0 until data.length()) {
-                            val resMenuObject = data.getJSONObject(i)
-                            val menuObject = RestaurantMenu(
-                                resMenuObject.getString("id"),
-                                resMenuObject.getString("name"),
-                                resMenuObject.getString("cost_for_one"),
-                                resMenuObject.getString("restaurant_id")
-                            )
-                            menuList.add(menuObject)
-                            recyclerAdapter =
-                                DetailAdapter(this@DetailActivity, menuList, cartItem) {
-                                    if (cartItem.isEmpty())
-                                        cartLayout.visibility = View.GONE
-                                    else
-                                        cartLayout.visibility = View.VISIBLE
-                                    if (it) {
-                                        txtCartItemNumber.text = cartItem.size.toString()
+                        if (success) {
+                            val data = it.getJSONArray("data")
+                            for (i in 0 until data.length()) {
+                                val resMenuObject = data.getJSONObject(i)
+                                val menuObject = RestaurantMenu(
+                                    resMenuObject.getString("id"),
+                                    resMenuObject.getString("name"),
+                                    resMenuObject.getString("cost_for_one"),
+                                    resMenuObject.getString("restaurant_id")
+                                )
+                                menuList.add(menuObject)
+                                recyclerAdapter =
+                                    DetailAdapter(this@DetailActivity, menuList, cartItem) {
+                                        if (cartItem.isEmpty())
+                                            cartLayout.visibility = View.GONE
+                                        else
+                                            cartLayout.visibility = View.VISIBLE
+                                        if (it) {
+                                            txtCartItemNumber.text = cartItem.size.toString()
+                                        }
                                     }
-                                }
-                            recyclerView.adapter = recyclerAdapter
-                            recyclerView.layoutManager = layoutManager
+                                recyclerView.adapter = recyclerAdapter
+                                recyclerView.layoutManager = layoutManager
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@DetailActivity,
+                                it.getString("successMessage"),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } catch (e: JSONException) {
                         Toast.makeText(
@@ -127,6 +137,9 @@ class DetailActivity : AppCompatActivity() {
 
         cartLayout.setOnClickListener {
             val intent = Intent(this@DetailActivity, CartActivity::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("res_id", id)
+            intent.putExtra("cart", cartItem)
             startActivity(intent)
         }
     }

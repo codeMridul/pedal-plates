@@ -10,10 +10,11 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.moriarity_code.pedalplates.R.*
 import com.moriarity_code.pedalplates.model.RestaurantMenu
+
 class DetailAdapter(
     val context: Context,
     private val itemList: ArrayList<RestaurantMenu>,
-    private val cartItem: MutableList<String>,
+    private val cartItem: ArrayList<RestaurantMenu>,
     val itemClick: (Boolean) -> Unit
 ) :
     RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
@@ -41,8 +42,8 @@ class DetailAdapter(
 
 
         holder.txtAddToCart.setOnClickListener {
-            if (cartItem.contains(product.id)) {
-                cartItem.remove(product.id)
+            if (cartItem.contains(product)) {
+                cartItem.remove(product)
                 holder.txtAddToCart.text = context.getString(string.add_to_cart)
                 holder.cvDetail.setCardBackgroundColor(
                     getColor(
@@ -51,10 +52,9 @@ class DetailAdapter(
                     )
                 )
             } else {
-                cartItem.add(product.id)
+                cartItem.add(product)
                 holder.txtAddToCart.text = context.getString(string.remove)
                 holder.cvDetail.setCardBackgroundColor(getColor(context, color.on_button_pressed))
-
             }
             itemClick(true)
         }
