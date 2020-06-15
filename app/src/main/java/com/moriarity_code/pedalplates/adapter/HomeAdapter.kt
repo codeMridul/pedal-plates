@@ -119,7 +119,7 @@ class HomeAdapter(val context: Context, private val itemList: ArrayList<Restaura
         Mode 3 -> Remove the favourites book
          **/
         private val db =
-            Room.databaseBuilder(context, FavouriteDatabase::class.java, "favourite_db").build()
+            Room.databaseBuilder(context, FavouriteDatabase::class.java, "favourites_db").build()
 
         override fun doInBackground(vararg params: Void?): Boolean {
             when (mode) {

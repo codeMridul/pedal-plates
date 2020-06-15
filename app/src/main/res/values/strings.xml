@@ -50,4 +50,7 @@
     <string name="restaurant_name">restaurant_name</string>
     <string name="cost_per_person">cost_per_person</string>
     <string name="_0_0">0.0</string>
+    <string name="restaurant_image">Restaurant Image</string>
+    <string name="favourite_restaurant">Favourite Restaurant</string>
+    <string name="remove_from_favourites">Remove from favourites</string>
 </resources>

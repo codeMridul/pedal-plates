@@ -75,8 +75,7 @@ class HomeFragment : Fragment() {
                         val success = it.getBoolean("success")
                         if (success) {
                             val data = it.getJSONArray("data")
-                            val size = data.length()
-                            for (i in 0..size + 1) {
+                            for (i in 0 until data.length()) {
                                 val resJsonObject = data.getJSONObject(i)
                                 val restaurantObject = Restaurants(
                                     resJsonObject.getString("id"),

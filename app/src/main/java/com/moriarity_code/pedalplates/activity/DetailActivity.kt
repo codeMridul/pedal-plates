@@ -62,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
                         val it = response.getJSONObject("data")
                         val success = it.getBoolean("success")
                         val data = it.getJSONArray("data")
-                        for (i in 0..data.length()) {
+                        for (i in 0 until data.length()) {
                             val resMenuObject = data.getJSONObject(i)
                             val menuObject = RestaurantMenu(
                                 resMenuObject.getString("id"),
