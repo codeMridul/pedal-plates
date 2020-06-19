@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.moriarity_code.pedalplates.R
-import com.moriarity_code.pedalplates.model.RestaurantMenu
 
-class CartAdapter(val context: Context, private val cartList: ArrayList<RestaurantMenu>) :
+class CartAdapter(
+    val context: Context,
+    private val cartName: java.util.ArrayList<String>,
+    private val cartCost: java.util.ArrayList<String>
+) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
-    var totalSum = 0
+    private var totalSum = 0
 
     class CartViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtProductName: TextView = view.findViewById(R.id.txtProductName)
@@ -25,14 +28,13 @@ class CartAdapter(val context: Context, private val cartList: ArrayList<Restaura
     }
 
     override fun getItemCount(): Int {
-        return cartList.size
+        return cartName.size
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val product = cartList[position]
-        holder.txtProductName.text = product.name
-        holder.txtProductCost.text = "Rs. ${product.cost_for_one}"
-        totalSum += Integer.parseInt(product.cost_for_one)
+        holder.txtProductName.text = "${position + 1}. ${cartName[position]}"
+        holder.txtProductCost.text = "Rs. ${cartCost[position]}"
+        totalSum += Integer.parseInt(cartCost[position])
         println(totalSum)
     }
 }

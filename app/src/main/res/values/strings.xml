@@ -55,4 +55,9 @@
     <string name="remove_from_favourites">Remove from favourites</string>
     <string name="item">Item</string>
     <string name="price">Price</string>
+    <string name="bill_no">Bill No</string>
+    <string name="total_bill">Total Bill*</string>
+    <string name="additional_charges_included_rs_150_delivery_charges">*Additional charges included(Rs. 150/- Delivery Charge)</string>
+    <string name="continue_to_verify_address_details">Continue to verify Address details</string>
+    <string name="ok">OK</string>
 </resources>

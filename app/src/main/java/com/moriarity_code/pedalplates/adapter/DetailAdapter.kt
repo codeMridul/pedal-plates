@@ -1,5 +1,6 @@
 package com.moriarity_code.pedalplates.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,9 @@ import com.moriarity_code.pedalplates.model.RestaurantMenu
 class DetailAdapter(
     val context: Context,
     private val itemList: ArrayList<RestaurantMenu>,
-    private val cartItem: ArrayList<RestaurantMenu>,
+    private val cartFoodNAme: ArrayList<String>,
+    private val cartFoodCost: ArrayList<String>,
+    private val cartFoodId: ArrayList<String>,
     val itemClick: (Boolean) -> Unit
 ) :
     RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
@@ -35,15 +38,17 @@ class DetailAdapter(
         return itemList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         val product = itemList[position]
         holder.txtProductName.text = product.name
         holder.txtProductCost.text = "Rs. ${product.cost_for_one}"
 
-
         holder.txtAddToCart.setOnClickListener {
-            if (cartItem.contains(product)) {
-                cartItem.remove(product)
+            if (cartFoodNAme.contains(product.name) && cartFoodCost.contains(product.cost_for_one)) {
+                cartFoodNAme.remove(product.name)
+                cartFoodCost.remove(product.cost_for_one)
+                cartFoodId.remove(product.id)
                 holder.txtAddToCart.text = context.getString(string.add_to_cart)
                 holder.cvDetail.setCardBackgroundColor(
                     getColor(
@@ -52,7 +57,9 @@ class DetailAdapter(
                     )
                 )
             } else {
-                cartItem.add(product)
+                cartFoodNAme.add(product.name)
+                cartFoodCost.add(product.cost_for_one)
+                cartFoodId.add(product.id)
                 holder.txtAddToCart.text = context.getString(string.remove)
                 holder.cvDetail.setCardBackgroundColor(getColor(context, color.on_button_pressed))
             }

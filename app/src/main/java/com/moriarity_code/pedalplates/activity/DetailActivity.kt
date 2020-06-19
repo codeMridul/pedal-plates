@@ -33,7 +33,9 @@ class DetailActivity : AppCompatActivity(), Serializable {
     private lateinit var txtCartItemNumber: TextView
 
     val menuList = arrayListOf<RestaurantMenu>()
-    val cartItem = arrayListOf<RestaurantMenu>()
+    private val cartFoodName = arrayListOf<String>()
+    private val cartFoodCost = arrayListOf<String>()
+    private val cartFoodId = arrayListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -75,13 +77,19 @@ class DetailActivity : AppCompatActivity(), Serializable {
                                 )
                                 menuList.add(menuObject)
                                 recyclerAdapter =
-                                    DetailAdapter(this@DetailActivity, menuList, cartItem) {
-                                        if (cartItem.isEmpty())
+                                    DetailAdapter(
+                                        this@DetailActivity,
+                                        menuList,
+                                        cartFoodName,
+                                        cartFoodCost,
+                                        cartFoodId
+                                    ) {
+                                        if (cartFoodName.isEmpty() && cartFoodCost.isEmpty())
                                             cartLayout.visibility = View.GONE
                                         else
                                             cartLayout.visibility = View.VISIBLE
                                         if (it) {
-                                            txtCartItemNumber.text = cartItem.size.toString()
+                                            txtCartItemNumber.text = cartFoodName.size.toString()
                                         }
                                     }
                                 recyclerView.adapter = recyclerAdapter
@@ -139,16 +147,18 @@ class DetailActivity : AppCompatActivity(), Serializable {
             val intent = Intent(this@DetailActivity, CartActivity::class.java)
             intent.putExtra("name", name)
             intent.putExtra("res_id", id)
-            intent.putExtra("cart", cartItem)
+            intent.putExtra("cartName", cartFoodName)
+            intent.putExtra("cartCost", cartFoodCost)
+            intent.putExtra("cartId", cartFoodId)
             startActivity(intent)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {//this add functionality to the back arrow in the Action Bar
-        if (cartItem.isNotEmpty()) {
+        if (cartFoodName.isNotEmpty() && cartFoodCost.isNotEmpty()) {
             Toast.makeText(
                 this@DetailActivity,
-                "You can order from one Restaurant only at a time",
+                "Empty your Cart before leaving the Restaurant",
                 Toast.LENGTH_SHORT
             ).show()
         } else {
@@ -167,10 +177,10 @@ class DetailActivity : AppCompatActivity(), Serializable {
     }
 
     override fun onBackPressed() {
-        if (cartItem.isNotEmpty()) {
+        if (cartFoodName.isNotEmpty() && cartFoodCost.isNotEmpty()) {
             Toast.makeText(
                 this@DetailActivity,
-                "You can order from one Restaurant only at a time",
+                "Empty your Cart before leaving the Restaurant",
                 Toast.LENGTH_SHORT
             ).show()
         } else {
