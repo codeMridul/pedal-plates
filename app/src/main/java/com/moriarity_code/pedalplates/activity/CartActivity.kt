@@ -98,6 +98,7 @@ class CartActivity : AppCompatActivity(), Serializable {
                                 Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this@CartActivity, OrderSuccessActivity::class.java)
+                            intent.putExtra("total", total.toString())
                             startActivity(intent)
                             this@CartActivity.finish()
                         } else {

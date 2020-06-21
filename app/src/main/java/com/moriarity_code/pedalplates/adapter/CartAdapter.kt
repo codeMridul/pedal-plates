@@ -34,7 +34,5 @@ class CartAdapter(
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.txtProductName.text = "${position + 1}. ${cartName[position]}"
         holder.txtProductCost.text = "Rs. ${cartCost[position]}"
-        totalSum += Integer.parseInt(cartCost[position])
-        println(totalSum)
     }
 }

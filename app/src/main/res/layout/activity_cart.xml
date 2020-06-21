@@ -79,6 +79,8 @@
             android:layout_below="@id/cartTotalBill"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="60dp"
-            android:text="@string/continue_to_verify_address_details" />
+            android:background="@color/primaryDarkColor"
+            android:text="@string/confirm_order"
+            android:textColor="#fafafa" />
     </RelativeLayout>
 </ScrollView>

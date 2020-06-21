@@ -60,4 +60,13 @@
     <string name="additional_charges_included_rs_150_delivery_charges">*Additional charges included(Rs. 150/- Delivery Charge)</string>
     <string name="continue_to_verify_address_details">Continue to verify Address details</string>
     <string name="ok">OK</string>
+    <string name="your_order_has_been_successfully_placed">Your Order has been successfully placed !!</string>
+    <string name="ooh_la_la">Ooh-La-La !!</string>
+    <string name="success">Success</string>
+    <string name="order_confirm">Your order will never reach you.\nSit back at home and cook for Yourself.\nKeep Rs. 0000 ready for smooth payment</string>
+    <string name="thank_you_for_ordering_through_pedal_plates">Thank You for ordering through Pedal-Plates</string>
+    <string name="your_previous_orders_are_listed_below">Your previous orders are listed below:</string>
+    <string name="order_date">order_date</string>
+    <string name="exit">Exit</string>
+    <string name="confirm_order">Confirm Order</string>
 </resources>

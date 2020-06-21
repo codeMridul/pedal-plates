@@ -1,19 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDarkColor"
-    tools:context=".activity.OrderSuccessActivity">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:background="@color/primaryLightColor"
-        android:text="@string/ok" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryDarkColor"
+        tools:context=".activity.OrderSuccessActivity">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/txthello"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/rosemary"
+            android:gravity="center"
+            android:text="@string/ooh_la_la"
+            android:textColor="#fafafa"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/txtSuccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txthello"
+            android:layout_margin="10dp"
+            android:layout_marginVertical="10dp"
+            android:drawableStart="@drawable/ic_baseline_check_circle_24"
+            android:fontFamily="@font/rosemary"
+            android:gravity="center"
+            android:text="@string/your_order_has_been_successfully_placed"
+            android:textColor="#fafafa"
+            android:textSize="18sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCentre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSuccess"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_order_success"
+                    app:layout_constraintDimensionRatio="H,3:2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvCentre"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/rosemary"
+            android:gravity="center"
+            android:text="@string/order_confirm"
+            android:textColor="#fafafa"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNo"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:text="@string/thank_you_for_ordering_through_pedal_plates"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="5dp">
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryLightColor"
+                android:text="@string/ok" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+

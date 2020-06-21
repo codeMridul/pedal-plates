@@ -15,7 +15,6 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <androidx.appcompat.widget.Toolbar
