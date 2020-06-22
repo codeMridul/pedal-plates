@@ -42,4 +42,5 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/menu_drawer" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

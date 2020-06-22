@@ -69,4 +69,8 @@
     <string name="order_date">order_date</string>
     <string name="exit">Exit</string>
     <string name="confirm_order">Confirm Order</string>
+    <string name="questions">Questions ?</string>
+    <string name="you_know_we_are_not_gonna_answer">You know, We are not gonna answer.</string>
+    <string name="thank_you">Thank You</string>
+    <string name="logo">logo</string>
 </resources>

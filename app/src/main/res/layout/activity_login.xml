@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo_white" />
+
     <TextView
         android:id="@+id/txtLogin"
         android:layout_width="wrap_content"
@@ -34,13 +43,13 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
             android:background="@android:color/transparent"
-            android:hint="@string/mobile_number"
-            android:inputType="phone"
-            android:maxLength="10"
             android:drawableStart="@drawable/ic_phone_black_24dp"
             android:drawablePadding="5dp"
             android:fontFamily="@font/cooljazz"
+            android:hint="@string/mobile_number"
             android:importantForAutofill="no"
+            android:inputType="phone"
+            android:maxLength="10"
             android:maxLines="1" />
     </androidx.cardview.widget.CardView>
 
@@ -59,12 +68,12 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
             android:background="@android:color/transparent"
-            android:hint="@string/password"
-            android:inputType="textPassword"
             android:drawableStart="@drawable/ic_lock_black_24dp"
             android:drawablePadding="5dp"
             android:fontFamily="@font/cooljazz"
+            android:hint="@string/password"
             android:importantForAutofill="no"
+            android:inputType="textPassword"
             android:maxLines="1" />
     </androidx.cardview.widget.CardView>
 
@@ -99,8 +108,8 @@
         android:fontFamily="@font/rosemary"
         android:text="@string/forgot_password"
         android:textColor="#d81b60"
-        android:textStyle="bold"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
 
     <TextView
